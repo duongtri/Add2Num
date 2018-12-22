@@ -23,17 +23,17 @@ public class MyBigNumber {
      * @param str1 chuỗi số thứ nhất.
      * @param str2 chuỗi số thứ hai.
      */
-    public String sum(final String num1, final String num2) {
+    public String sum(final String str1, final String str2) {
         int pos;
-        int leng1 = num1.length();
-        int leng2 = num2.length();
+        int leng1 = str1.length();
+        int leng2 = str2.length();
         int max =  (leng1 > leng2) ? leng1 : leng2; // lưu giá trị length của chuổi dài nhất
         String step = "";
         String process = "";
         String sum = "";//tao ra biến lưu kết quả
         Pattern pattern = Pattern.compile("\\D"); // Chuỗi đại diện cho kí tự số từ [0-9]
-        final Matcher isError1 = pattern.matcher(num1);// biến để lưu dữ kết quả xét chuỗi s1 
-        final Matcher isError2 = pattern.matcher(num2);;// biến để lưu dữ kết quả xét chuỗi s2
+        final Matcher isError1 = pattern.matcher(str1);// biến để lưu dữ kết quả xét chuỗi s1 
+        final Matcher isError2 = pattern.matcher(str2);;// biến để lưu dữ kết quả xét chuỗi s2
         int remember = 0;//tạo ra biến lưu số để nhớ nếu kết quả cộng lớn hơn 10
         int numSum = 0; // biến dùng để lưu kết qua phép cộng của từng kì tụ trong chuỗi
 
@@ -42,48 +42,48 @@ public class MyBigNumber {
 
         // bắt lỗi dữ liệu nhập vào nếu có
         //kiểm tra người dùng có nhập đủ input ch
-        if (num1.isEmpty()) {
+        if (str1.isEmpty()) {
             pos = 1;
             this.ireceiver.send("Vui lòng nhập số thứ nhất: ");
             throw new NumberException(pos);
         }
 
-        if (num2.isEmpty()) {
+        if (str2.isEmpty()) {
             pos = 1;
             this.ireceiver.send("Vui lòng nhập số thứ 2: ");
             throw new NumberException(pos);
         }
 
         // Kiểm tra số âm
-        if (num1.charAt(0) == '-') {
+        if (str1.charAt(0) == '-') {
             pos = 1;
-            this.ireceiver.send("không hổ trợ số âm: " + num1);
+            this.ireceiver.send("không hổ trợ số âm: " + str1);
             throw new NumberException(pos);
         }
 
-        if (num2.charAt(0) == '-') {
+        if (str2.charAt(0) == '-') {
             pos = 1;
-            ireceiver.send("Không hổ trợ số âm: " + num2);
+            ireceiver.send("Không hổ trợ số âm: " + str2);
             throw new NumberException(pos);
         }
 
         // Kiểm tra kí tự đặc biệt
         if (isError1.find()) {
             pos = isError1.start() + 1;
-            this.ireceiver.send("Vị trí " + pos + " trong chuổi " + num1 + " không phải là số");
+            this.ireceiver.send("Vị trí " + pos + " trong chuổi " + str1 + " không phải là số");
             throw new NumberException(pos);
         }
 
         if (isError2.find()) {
             pos = isError2.start() + 1;
-            this.ireceiver.send("Vị trí " + pos + " trong chuổi " + num2 + " không phải là số");
+            this.ireceiver.send("Vị trí " + pos + " trong chuổi " + str2 + " không phải là số");
             throw new NumberException(pos);
 
         }
         int i = 0; //biến đếm cho vòng lặp
         for (i = 1; i <= max; i++) { // chạy vòng lặp để tham chiếu đến từng kí tự của chuổi
-            char1 = ((leng1 - i) >= 0) ? num1.charAt(leng1 - i) : '0'; // nếu chuổi 1 hết ta sẽ ghi 0
-            char2 = ((leng2 - i) >= 0) ? num2.charAt(leng2 - i) : '0'; //nếu chuổi 2 hết ta sẽ ghi 0
+            char1 = ((leng1 - i) >= 0) ? str1.charAt(leng1 - i) : '0'; // nếu chuổi 1 hết ta sẽ ghi 0
+            char2 = ((leng2 - i) >= 0) ? str2.charAt(leng2 - i) : '0'; //nếu chuổi 2 hết ta sẽ ghi 0
 
             numSum = (char1 - '0') + (char2 - '0') + remember;
             sum = Integer.toString(numSum % 10) + sum; //ghi kết quả cộng vào biến kết quả
@@ -93,7 +93,7 @@ public class MyBigNumber {
 
             // kiểm tra xem có phần nhớ hay không
             if (remember == 1) {
-                if (num2.length() - i >= 0) {
+                if (str2.length() - i >= 0) {
                     process = "bước " + i + ", lấy " + char1 + " cộng " + char2 + " cộng " 
                         + remember + " được " + numSum + ", ghi " + numSum % 10 + ", nhớ " + remember + "\n";
                 } else {
@@ -101,7 +101,7 @@ public class MyBigNumber {
                         + " được " + numSum + ", ghi " + numSum % 10 + ", nhớ " + remember + "\n";
                 }
             } else {
-                if (num2.length() - i >= 0) {
+                if (str2.length() - i >= 0) {
                     process = "bước " + i + ", lấy " + char1 + " cộng " 
                         + char2 + " được " + numSum + ", ghi " + numSum % 10 + "\n";
                 } else {
