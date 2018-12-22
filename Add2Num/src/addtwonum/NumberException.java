@@ -6,8 +6,7 @@
 package addtwonum;
 
 /**
- *
- * @author Hy's PC
+ * author Hy's PC.
  */
 public class NumberException extends NumberFormatException {
       private int pos;
@@ -18,7 +17,7 @@ public class NumberException extends NumberFormatException {
     
     @Override
     public String toString() {
-        return pos+"";
+        return pos + "";
     }
     
 }
