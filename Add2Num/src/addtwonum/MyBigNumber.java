@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class MyBigNumber {
 
     private IReceiver ireceiver;
-    public String er= "";
+    public String er = "";
 
     public MyBigNumber(final IReceiver ireceiver) {
         this.ireceiver = ireceiver;
