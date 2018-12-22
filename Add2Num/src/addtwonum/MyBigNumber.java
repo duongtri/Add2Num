@@ -23,13 +23,11 @@ public class MyBigNumber {
      * @param str1 chuỗi số thứ nhất.
      * @param str2 chuỗi số thứ hai.
      */
-    public String sum(final String str1, final String str2) {
+    public String sum(final String num1, final String num2) {
         int pos;
         int leng1 = str1.length();
         int leng2 = str2.length();
         int max =  (leng1 > leng2) ? leng1 : leng2; // lưu giá trị length của chuổi dài nhất
-        String num1 = str1;
-        String num2 = str2;
         String step = "";
         String process = "";
         String sum = "";//tao ra biến lưu kết quả
