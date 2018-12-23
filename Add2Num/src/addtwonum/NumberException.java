@@ -12,7 +12,8 @@ public class NumberException extends NumberFormatException {
       private int pos;
     
     public NumberException(int num) {
-        pos = num;
+          super(num + "");
+          this.pos = num;
     }
     
     @Override
